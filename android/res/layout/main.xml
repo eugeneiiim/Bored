@@ -4,10 +4,15 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="Hello World, Bored"
-    />
+  <TextView
+     android:id="@+id/todoTextView"
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:text="Hello World, Bored" />
+  <Button
+     android:id="@+id/getTodoButton"
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:text="Get thing to do"
+     />
 </LinearLayout>
-
