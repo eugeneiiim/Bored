@@ -13,31 +13,47 @@ import java.lang.Runnable;
 import android.os.AsyncTask;
 
 public class Bored extends Activity {
+
+  int latestUpdateId;
+
   /** Called when the activity is first created. */
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.main);
 
-    final TextView tv = (TextView) findViewById(R.id.todoTextView);
-    tv.setText(getThingToDo());
-
     final Button button = (Button) findViewById(R.id.getTodoButton);
     button.setOnClickListener(new View.OnClickListener() {
         public void onClick(View v) {
-	  new AsyncTask<Void, Integer, String>() {
-	    protected String doInBackground(Void... _) {
-	      return getThingToDo();
-	    }
-
-	    protected void onProgressUpdate(Integer... progress) {}
-
-	    protected void onPostExecute(String result) {
-	      tv.setText(result);
-	    }
-	  }.execute(null, null);
+	  updateThingToDo();
 	}
       });
+
+    latestUpdateId = 0;
+    updateThingToDo();
+  }
+
+  private synchronized void updateThingToDo() {
+    final TextView loadingTv = (TextView) findViewById(R.id.loadingTextView);
+    final TextView tv = (TextView) findViewById(R.id.todoTextView);
+
+    tv.setText("");
+    loadingTv.setText("Loading...");
+
+    final int thisUpdateId = ++latestUpdateId;
+
+    new AsyncTask<Void, Integer, String>() {
+      protected String doInBackground(Void... _) {
+	return getThingToDo();
+      }
+
+      protected void onPostExecute(String result) {
+	if (thisUpdateId == latestUpdateId) {
+	  loadingTv.setText("");
+	  tv.setText(result);
+	}
+      }
+    }.execute(null, null);
   }
 
   private String getThingToDo() {
@@ -56,7 +72,7 @@ public class Bored extends Activity {
       return result + ".";
     } catch (IOException e) {
       e.printStackTrace();
-      return "Request failed.";
+      return "Get an internet connection.";
     }
   }
 }
