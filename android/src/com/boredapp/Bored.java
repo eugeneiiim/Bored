@@ -16,7 +16,6 @@ public class Bored extends Activity {
 
   int latestUpdateId;
 
-  /** Called when the activity is first created. */
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -25,8 +24,8 @@ public class Bored extends Activity {
     final Button button = (Button) findViewById(R.id.getTodoButton);
     button.setOnClickListener(new View.OnClickListener() {
         public void onClick(View v) {
-	  updateThingToDo();
-	}
+          updateThingToDo();
+        }
       });
 
     latestUpdateId = 0;
@@ -44,21 +43,21 @@ public class Bored extends Activity {
 
     new AsyncTask<Void, Integer, String>() {
       protected String doInBackground(Void... _) {
-	return getThingToDo();
+        return getThingToDo();
       }
 
       protected void onPostExecute(String result) {
-	if (thisUpdateId == latestUpdateId) {
-	  loadingTv.setText("");
-	  tv.setText(result);
-	}
+        if (thisUpdateId == latestUpdateId) {
+          loadingTv.setText("");
+          tv.setText(result);
+        }
       }
     }.execute(null, null);
   }
 
   private String getThingToDo() {
     try {
-      URL url = new URL("http://electric-night-28.heroku.com/");
+      URL url = new URL(getString(R.string.contentUrl));
       BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
       String inputLine;
 
@@ -72,7 +71,7 @@ public class Bored extends Activity {
       return result + ".";
     } catch (IOException e) {
       e.printStackTrace();
-      return "Get an internet connection.";
+      return getString(R.string.failureMessage);
     }
   }
 }

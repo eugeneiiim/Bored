@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Bored</string>
+    <string name="contentUrl">http://electric-night-28.heroku.com/</string>
+    <string name="buttonLabel">Get something else to do</string>
+    <string name="failureMessage">Get an internet connection.</string>
 </resources>

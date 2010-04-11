@@ -13,7 +13,7 @@
      android:textSize="24sp"
      android:gravity="center"
      android:textColor="@drawable/black"
-     android:text="go to the bathroom." />
+     android:text="" />
   <TextView
      android:id="@+id/loadingTextView"
      android:layout_width="fill_parent"
@@ -26,7 +26,7 @@
      android:id="@+id/getTodoButton"
      android:layout_width="fill_parent"
      android:layout_height="wrap_content"
-     android:text="Get something else to do"
+     android:text="@+string/buttonLabel"
      android:textSize="18sp"
      android:height="20sp"
      android:hapticFeedbackEnabled="true"
