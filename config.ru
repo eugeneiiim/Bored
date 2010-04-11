@@ -31,7 +31,7 @@ shine a laser pointer on a couple making out so they know someone is watching th
 two guys hold a skipping rope between them and run up the street until you get too tired
 EOS
 
-ACTIVITIES = ACTIVITIES_TEXT.lines.to_a
+ACTIVITIES = ACTIVITIES_TEXT.split("\n")
 
 run (lambda do |env|
   [200, {'Content-Type'=>'text/plain'}, StringIO.new(ACTIVITIES.choice)]
