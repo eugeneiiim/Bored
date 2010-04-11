@@ -8,11 +8,16 @@
      android:id="@+id/todoTextView"
      android:layout_width="fill_parent"
      android:layout_height="wrap_content"
-     android:text="Hello World, Bored" />
+     android:height="380sp"
+     android:textSize="20sp"
+     android:gravity="center"
+     android:text="go to the bathroom." />
   <Button
      android:id="@+id/getTodoButton"
      android:layout_width="fill_parent"
      android:layout_height="wrap_content"
-     android:text="Get thing to do"
+     android:text="Get something else to do"
+     android:textSize="16sp"
+     android:height="20sp"
      />
 </LinearLayout>
