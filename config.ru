@@ -34,5 +34,6 @@ EOS
 ACTIVITIES = ACTIVITIES_TEXT.split("\n")
 
 run (lambda do |env|
-  [200, {'Content-Type'=>'text/plain'}, StringIO.new(ACTIVITIES.choice)]
+  i = rand ACTIVITIES.size
+  [200, {'Content-Type'=>'text/plain'}, StringIO.new(ACTIVITIES[i])]
 end)
